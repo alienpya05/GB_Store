@@ -1,0 +1,309 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap');
+
+#div{
+    width: 90%;
+    margin:  0 auto;
+    padding-top: 70px;
+}
+a {
+    text-decoration: none;
+}
+
+/* Changer la couleur des liens */
+a {
+    color: black /* Couleur bleue (changez-la selon vos préférences) */
+}
+h2{
+    font-family: Dark;
+    cursor: pointer;
+}
+nav >a{
+    color: black;
+    text-decoration: none;
+    padding: 5px 20px ;
+    position: relative;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.4s ease;
+    
+}
+nav > a:hover{
+    color: rgb(210, 154, 81);
+    border-bottom: 2px solid rgb(210, 154, 81);
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffff;
+    padding: 0 50px 0 50px;
+   
+}
+
+.container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+
+/* Style pour centrer la barre de recherche */
+.search-container {
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    margin-top: 70px;
+    width: 100%; /* Prend la largeur totale disponible */
+}
+
+.search-input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-right: 5px;
+    width: 450px;
+    margin-right: -5px
+}
+
+.search-button {
+    padding: 12px 20px;
+    border: none;
+    border-left: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: -5px; 
+}
+
+/* style categorie box*/
+
+/* Style pour la grille */
+/* Style pour la grille */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 300px); /* 4 colonnes de 300px chacune */
+    gap: 20px; /* Espacement entre les éléments */
+    justify-content: center; /* Centrer horizontalement */
+    margin-top: 50px; /* Marge supérieure pour décoller du haut de la page */
+    margin-bottom: 50px;
+}
+
+/* Style pour chaque élément de la grille */
+.grid-item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 200px; /* Changer la largeur selon vos besoins */
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    
+}
+.grid-item:hover {
+    /* Modification de l'ombrage au survol */
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/* Style pour l'icône */
+.icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Style pour le titre */
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style pour le sous-titre */
+.subtitle {
+    font-size: 14px;
+}
+
+.special-box {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 200px; /* Même largeur que les autres éléments */
+    height: 100px;
+}
+/* Style pour la boîte spéciale */
+.special-box {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out, cursor 0.3s ease-in-out;
+}
+
+/* Style pour l'icône de la boîte spéciale */
+.special-box .icon {
+    font-size: 48px; /* Taille de l'icône */
+    line-height: 100px; /* Hauteur pour centrer verticalement */
+}
+
+/* Effet au survol pour la boîte spéciale */
+.special-box:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond moins lumineuse au survol */
+    cursor: pointer; /* Curseur pointer au survol */
+}
+
+
+/* -------- FORMULAIRE AJOUT CATEGORIE ---------------- */ 
+.register-categorie {
+    background: #f1f7fc;
+    padding: 80px 0;
+}
+.register-Article {
+    background: #f1f7fc;
+    padding: 80px 0;
+}
+.register-categorie .form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.register-categorie .form-container .image-holder {
+    flex: 1;
+    background: url(../../assets/img/meeting.jpg) center/cover;
+    height: 500px; /* Hauteur de l'image */
+}
+
+.register-categorie form {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 40px;
+    color: #505e6c;
+    margin: 0 20px; /* Espace entre l'image et le formulaire */
+    max-width: 400px; /* Largeur maximale du formulaire */
+}
+
+.register-categorie form h2 {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.register-categorie form .form-group {
+    margin-bottom: 20px; /* Espace entre les champs */
+}
+
+.register-categorie form .form-control {
+    background: #f7f9fc;
+    border: none;
+    border-bottom: 1px solid #dfe7f1;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+    text-indent: 6px;
+    height: 40px;
+}
+.custom-file-input {
+    opacity: 0; /* Rendre l'input de type file invisible */
+    width: 0.1px;
+    height: 0.1px;
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+}
+
+.custom-file-label {
+    background-color: #4e4d4d94;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.register-categorie form .btn-primary {
+    background: #f4476b;
+    border: none;
+    border-radius: 4px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 35px;
+    text-shadow: none;
+    outline: none !important;
+}
+
+
+.register-categorie form .btn-primary:hover,
+.register-categorie form .btn-primary:active {
+    background: #eb3b60;
+}
+
+.register-categorie form .btn-primary:active {
+    transform: translateY(1px);
+}
+.form-group input[type="text"],
+.form-group textarea {
+    width: 250px; /* Prend la largeur totale disponible */
+    resize: vertical; /* Permet le redimensionnement vertical du champ "Description" */
+}
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  * Style pour le survol du champ select */
+  .form-group select:hover {
+    border-color: #aaaaaa;
+  }
+  
+  /* Style pour le focus du champ select */
+  .form-group select:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  }
+
+  .grid-Article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+}
+
+.image-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.details {
+    margin-top: 10px;
+}
+
+.add-to-cart {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}

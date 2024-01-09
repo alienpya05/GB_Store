@@ -1,0 +1,19 @@
+{% extends 'header-footer.html' %}
+
+{% block content %}
+    <div class="banner">
+        <div class="banner-text">
+
+            <h1>GB-STORE</h1>
+            <p>Organiser et gerer votre boutique en un seul clic</p>
+            
+        </div>
+    </div>
+    
+    <div class="search-container">
+        <form action="/search" method="GET">
+            <input type="text" placeholder="Rechercher..." name="search" class="search-input">
+            <button type="submit" class="search-button">Rechercher</button>
+        </form>
+    </div>
+{% endblock %}

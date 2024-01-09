@@ -1,0 +1,32 @@
+{% extends 'header-footer.html' %}
+{% load static %}
+{% block content %}
+    <div class="banner" style="background-image: url('{{ categorie.image.url }}');">
+        <div class="banner-text">
+            <h1>{{ categorie.nomCategorie }}</h1>
+            <p>{{ categorie.description }}</p>
+        </div>
+    </div>
+    <div class="grid-container">
+        <a href="{%  url 'ArticleForms' %}" class="special-link">
+            <div class="grid-item special-box">
+                <div class="icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+        </a>
+        {% for article in categorie.article_set.all %}
+            <div class="grid-Article">
+                <div class="image-container">
+                    <img src="{{ article.image.url }}" alt="{{ article.nom_article }}">
+                </div>
+                <div class="details">
+                    <div class="title">{{ article.nom_article }}</div>
+                    <div class="price">{{ article.prix }} €</div>
+                    <button class="add-to-cart">Ajouter au panier</button>
+                    <!-- Autres détails de l'article -->
+                </div>
+            </div>
+        {% endfor %}
+        
+    </div>
+    
+{% endblock %}

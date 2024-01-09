@@ -1,0 +1,29 @@
+{% extends 'header-footer.html' %}
+
+{% block content %}
+    <div class="banner">
+        <div class="banner-text">
+
+            <h1>GB-STORE</h1>
+            <p>Sur cette page retrouver vos produits classe en categorie</p>
+            
+        </div>
+    </div>
+    <div class="grid-container">
+        <a href="{%  url 'CategorieForm' %}" class="special-link">
+            <div class="grid-item special-box">
+                <div class="icon"><i class="fa-solid fa-plus"></i></div>
+            </div>
+        </a>
+        {% for categorie in categories %}
+            <a href="{% url 'Categorie' categorie.id %}" class="category-link">
+                <div class="grid-item">
+                    <div class="icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                    <div class="title">{{ categorie.nomCategorie }}</div>
+                    <div class="subtitle">{{ categorie.description }}</div>
+                </div>
+            </a>
+        {% endfor %}
+        
+    </div>
+{% endblock %}
