@@ -1,0 +1,26 @@
+{% extends 'header-footer.html' %}
+
+{% block content %}
+    <div class="articlePage">
+        <div class="containers">
+            <img src="{{ article.image.url }}" alt="{{ article.nomArticle }}" class="article-image">
+        
+            <h1>{{ article.nomArticle }}</h1>
+            <p><strong>Prix:</strong> {{ article.prix }}</p>
+            <p><strong>Stock:</strong> {{ article.stock }}</p>
+            <p><strong>Disponibilité:</strong> {% if article.disponible %} Disponible {% else %} Non disponible {% endif %}</p>
+        
+            {% if article.promotion %}
+            <p><strong>Promotion:</strong> {{ article.promotion.nomPromotion }}</p>
+            {% endif %}
+        
+            <p><strong>Catégorie:</strong> {{ article.categorie.nomCategorie }}</p>
+            
+            <div class="btn-container">
+            <a href="{% url 'modifier_article' article.id %}" class="btn btn-primary">Modifier Article</a>
+            <a href="{% url 'confirmation_suppression' article.id  %}" class="btn btn-danger">Supprimer Article</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

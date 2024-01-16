@@ -85,8 +85,10 @@ header{
     grid-template-columns: repeat(4, 300px); /* 4 colonnes de 300px chacune */
     gap: 20px; /* Espacement entre les éléments */
     justify-content: center; /* Centrer horizontalement */
-    margin-top: 50px; /* Marge supérieure pour décoller du haut de la page */
+    margin-top: 100px; /* Marge supérieure pour décoller du haut de la page */
     margin-bottom: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 /* Style pour chaque élément de la grille */
@@ -259,7 +261,7 @@ header{
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
-  * Style pour le survol du champ select */
+  /* Style pour le survol du champ select */
   .form-group select:hover {
     border-color: #aaaaaa;
   }
@@ -278,15 +280,14 @@ header{
     justify-content: center;
     text-align: center;
     border: 1px solid #ccc;
-    margin: 10px;
     padding: 10px;
+    
 }
 
 .image-container {
     width: 100%;
     height: 200px;
-    display: flex;
-    align-items: flex-end;
+    cursor: pointer;
 }
 
 .image-container img {
@@ -297,7 +298,9 @@ header{
 .details {
     margin-top: 10px;
 }
-
+.price{
+    margin-bottom: 20px;
+}
 .add-to-cart {
     margin-top: 10px;
     padding: 10px 20px;
@@ -306,4 +309,143 @@ header{
     border: none;
     cursor: pointer;
     border-radius: 3px;
+}
+#btn-panier {
+    text-align: right; /* Aligner le contenu à droite */
+    padding: 10px; /* Ajouter un peu d'espace autour du bouton */
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.voir-panier {
+    text-decoration: none; /* Supprimer la décoration de lien par défaut */
+    color: #fff; /* Couleur du texte */
+    background-color: green; /* Couleur de fond du bouton */
+    padding: 8px 15px; /* Ajouter un peu d'espace intérieur au bouton */
+    border-radius: 5px; /* Ajouter des coins arrondis au bouton */
+}
+
+.voir-panier i {
+    margin-right: 5px; /* Ajouter un peu d'espace entre l'icône et le texte */
+}
+
+.quantity-selector {
+    display: flex;
+    flex-direction: column;
+}
+
+.quantity-controls{
+    flex-direction: column;
+    align-items: center;
+}
+.quantity{
+   padding: 2px 2px;
+}
+.quantity-decrease,
+.quantity-increase{
+    padding: 8px 15px; /* Ajoutez de l'espace à l'intérieur des boutons */
+    margin-right: 5px;
+    margin-left: 5px; /* Ajoutez un peu d'espace entre les boutons */
+    border: none; /* Supprimez les bordures */
+    border-radius: 5px; /* Ajoutez des coins arrondis aux boutons */
+    background-color: #3498db; /* Couleur de fond des boutons */
+    color: #fff; /* Couleur du texte des boutons */
+    cursor: pointer; /* Changez le curseur au survol du bouton */
+}
+.add-to-cart-final {
+    margin-top: 20px;
+    padding: 8px 20px;
+    cursor: pointer; 
+    background-color: #3498db; 
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+
+}
+.quantity-decrease:hover,
+.quantity-increase:hover,
+.add-to-cart-final:hover {
+    background-color: #0056b3; /* Couleur de fond au survol des boutons */
+}
+
+/* Vous pouvez ajouter d'autres styles selon vos préférences */
+
+.cancel {
+    margin-top: 10px;
+    padding: 8px 20px;
+    background-color: #e74c3c;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.cancel:hover {
+    background-color: #c0392b;
+}
+
+/* sytle de la page article */
+
+.containers {
+  max-width: 600px;
+  margin: 20px auto;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  
+}
+.articlePage{
+    background: #f1f7fc;
+}
+/* Style pour l'image */
+.article-image {
+    max-width: 300px;
+    height: auto;
+    margin: 20px auto;
+  }
+  
+  /* Style pour les boutons */
+.btn-container {
+    margin-top: 50px;
+    text-align: center;
+    
+}
+  
+.btn-container a {
+    margin: 0 10px;
+}
+.btn-primary{
+    background-color: #136fd2;
+    color: #ffff;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.btn-danger{
+    background-color: #dc221c;
+    color: #ffff;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.vendre{
+    
+    width: 50%; 
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px; 
+}
+.vendre-button{
+    cursor: pointer;
+    border: none;
+    padding: 12px 28px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;   
+}
+.vendre-button:hover{
+    background-color: #0056b3;
 }

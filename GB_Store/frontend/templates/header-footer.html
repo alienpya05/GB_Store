@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BookNews</title>
+        <title>GB-Store</title>
         <link rel="stylesheet" type="text/css" href="{% static 'CSS/style.css' %}"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJf+2qG0EmB/J" crossorigin="anonymous">
@@ -58,13 +58,133 @@
        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script>
-            
             function updateFileName() {
                 let input = document.getElementById('customFile');
                 let fileName = input.files[0].name;
                 let label = input.nextElementSibling;
                 label.innerText = fileName;
             }
+            document.querySelectorAll('.add-to-cart').forEach(function (addToCartButton) {
+                addToCartButton.addEventListener('click', function () {
+                    // Cacher le bouton "Ajouter au panier"
+                    this.style.display = 'none';
+            
+                    // Afficher le sélecteur de quantité associé
+                    const quantitySelector = this.parentNode.querySelector('.quantity-selector');
+                    if (quantitySelector) {
+                        quantitySelector.style.display = 'flex';
+                    }
+                });
+            });
+            /* Interaction ajout aux panier */
+            document.querySelectorAll('.quantity-increase').forEach(button => {
+                button.addEventListener('click', () => {
+                    const quantityInput = button.parentElement.querySelector('.quantity');
+                    const newValue = parseInt(quantityInput.value) + 1;
+                    quantityInput.value = newValue;
+            
+                    // Mettre à jour la valeur du champ caché
+                    const hiddenQuantityInput = button.parentElement.querySelector('.quantity-input');
+                    console.log(hiddenQuantityInput)
+                    hiddenQuantityInput.value = newValue;
+                    console.log('Increased quantity:', quantityInput.value);
+                });
+            });
+
+            document.querySelectorAll('.quantity-decrease').forEach(button => {
+                button.addEventListener('click', () => {
+                    const quantityInput = button.parentElement.querySelector('.quantity');
+                    const newValue = parseInt(quantityInput.value) - 1;
+                    quantityInput.value = newValue > 0 ? newValue : 1;
+            
+                    // Mettre à jour la valeur du champ caché
+                    const hiddenQuantityInput = button.parentElement.querySelector('.quantity-input');
+                    hiddenQuantityInput.value = quantityInput.value;
+            
+                    console.log('Decreased quantity:', quantityInput.value);
+                });
+            });
+            
+            // Logique pour augmenter/diminuer la quantité
+           
+        
+            // Logique ajouter au panier
+            document.querySelectorAll('.ajouter-au-panier-form').forEach(form => {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+            
+                    // Récupérer la valeur de la quantité depuis le champ caché
+                    const quantityInput = form.querySelector('.quantity-input');
+                    const quantity = quantityInput.value;
+            
+                    // Créer un objet FormData à partir du formulaire
+                    const formData = new FormData(this);
+            
+                    // Ajouter la quantité au FormData
+                    formData.append('quantity', quantity);
+            
+                    // Effectuer la requête fetch vers le serveur
+                    fetch('{% url "ajouter_au_panier" %}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: new URLSearchParams(formData).toString()
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            const addButton = form.querySelector('.add-to-cart-final');
+                            addButton.style.backgroundColor = 'green';
+                            console.log('Article ajouté au panier avec succès!');
+                        } else {
+                            console.error('Erreur lors de l\'ajout au panier:', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de l\'ajout au panier:', error);
+                    });
+                });
+            });
+            document.querySelectorAll('.cancel').forEach(cancelButton => {
+                cancelButton.addEventListener('click', function () {
+                    const quantitySelector = this.closest('.quantity-selector');
+            
+                    if (quantitySelector) {
+                        quantitySelector.style.display = 'none';
+                        const quantityInput = quantitySelector.querySelector('.quantity');
+            
+                        if (quantityInput) {
+                            quantityInput.value = 1;
+                        } else {
+                            console.error("Quantity input not found.");
+                        }
+            
+                        const addButton = quantitySelector.parentElement.querySelector('.add-to-cart');
+                        if (addButton) {
+                            addButton.style.display = 'flex';
+                        } else {
+                            console.error("Add to cart button not found.");
+                        }
+                    } else {
+                        console.error("Quantity selector not found.");
+                    }
+                });
+            });
+            
+            // Function to get CSRF token from cookie
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+             
         </script>
     </body>
 </html>

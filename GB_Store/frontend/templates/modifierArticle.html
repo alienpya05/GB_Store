@@ -1,36 +1,36 @@
-
 {% extends 'header-footer.html' %}
 {% load static %}
 {% block content %}
 <div class="register-categorie">
     <div class="form-container">
         <div class="image-holder"><img src="{% static 'assets/article3.jpg' %}" alt="image"></div>
-        <form method="post" action="{% url 'AddArticle' %}" enctype="multipart/form-data">
+        <form method="post" action="{% url 'modifier_article' article.id %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <h2 class="text-center"><strong>Create</strong> an article.</h2>
+            <h2 class="text-center"><strong>Modifier</strong> l'article</h2>
             <div class="form-group">
-                <input class="form-control" type="text" id="nomArticle" name="nomArticle" placeholder="Nom de l'article">
+                <input class="form-control" type="text" id="nomArticle" name="nomArticle" placeholder="Nom de l'article" value="{{ article.nomArticle }}">
             </div>
             <div class="form-group">
-                <input class="form-control" type="number" id="prix" name="prix" placeholder="Prix">
+                <input class="form-control" type="number" id="prix" name="prix" placeholder="Prix" value="{{ article.prix }}">
             </div>
             <div class="form-group">
-                <input class="form-control" type="number" id="stock" name="stock" placeholder="Stock">
+                <input class="form-control" type="number" id="stock" name="stock" placeholder="Stock" value="{{ article.stock }}">
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" name="image" id="customFile" onchange="updateFileName()">
                 <label class="custom-file-label" for="customFile">Choisir une image</label>
             </div><br>
             <div class="form-group">
-                <input type="checkbox" id="disponibilite" name="disponibilite" checked>
+                <input type="hidden" name="disponible" value="off">
+                <input type="checkbox" id="disponible" name="disponible" {% if article.disponible %}checked{% endif %}>
                 <label for="disponibilite">Disponibilité</label>
             </div>
             <div class="form-group">
                 <label for="promotion">Promotion:</label>
                 <select id="promotion" name="promotion">
-                    <option value="">Aucune promotion</option>
+                    <option value="" {% if not article.promotion %}selected{% endif %}>Aucune promotion</option>
                     {% for promotion in promotions %}
-                        <option value="{{ promotion.id }}">{{ promotion.nomPromotion }}</option>
+                        <option value="{{ promotion.id }}" {% if article.promotion == promotion %}selected{% endif %}>{{ promotion.nomPromotion }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -38,14 +38,15 @@
                 <label for="categorie">Catégorie:</label>
                 <select id="categorie" name="categorie">
                     {% for categorie in categories %}
-                        <option value="{{ categorie.id }}">{{ categorie.nomCategorie }}</option>
+                        <option value="{{ categorie.id }}" {% if article.categorie == categorie %}selected{% endif %}>{{ categorie.nomCategorie }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block"  type="submit">Add Article</button>
+                <button class="btn btn-primary btn-block" type="submit">Enregistrer les modifications</button>
             </div>
         </form>
     </div>
 </div>
+
 {% endblock %}

@@ -7,26 +7,60 @@
             <p>{{ categorie.description }}</p>
         </div>
     </div>
+    
+    <div id="btn-panier">
+        <div id="btn-container">
+            <a href="{% url 'modifier_categorie' categorie.id %}" class="btn btn-primary">
+                Modifier Catégorie
+            </a>
+            <a href="{% url 'confirmation_suppression_categorie' categorie.id%}" class="btn btn-danger">
+                Supprimer categorie
+            </a>
+        </div>
+        <a href="{% url 'afficher_panier' %}" class="voir-panier">
+            <i class="fas fa-shopping-cart"></i>
+            Voir Panier
+        </a>
+    </div>
+
+    
     <div class="grid-container">
-        <a href="{%  url 'ArticleForms' %}" class="special-link">
+        <a href="{% url 'ArticleForms' %}" class="special-link">
             <div class="grid-item special-box">
                 <div class="icon"><i class="fa-solid fa-plus"></i></div>
             </div>
         </a>
         {% for article in categorie.article_set.all %}
             <div class="grid-Article">
-                <div class="image-container">
-                    <img src="{{ article.image.url }}" alt="{{ article.nom_article }}">
-                </div>
+                <a href="{% url 'Article' article.id%}" class="article-link">
+                    <div class="image-container">
+                        <img src="{{ article.image.url }}" alt="{{ article.nom_article }}">
+                    </div>
+                </a>
                 <div class="details">
-                    <div class="title">{{ article.nom_article }}</div>
-                    <div class="price">{{ article.prix }} €</div>
+                    <div class="title">{{ article.nomArticle }}</div>
+                    <div class="price">{{ article.prix }} Fr</div>
                     <button class="add-to-cart">Ajouter au panier</button>
-                    <!-- Autres détails de l'article -->
+                    
+                    <div class="quantity-selector" style="display: none;">
+                        <div class="quantity-controls">
+                            <button class="quantity-decrease">-</button>
+                            <input type="number" class="quantity" value="1" disabled>
+                            <button class="quantity-increase">+</button>
+                            <form class="ajouter-au-panier-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="article_id" value="{{ article.id }}">
+                                <input type="hidden" name="quantity" class="quantity-input" value="1">
+                                <button type="submit" class="add-to-cart-final">Valider</button>
+                                <button type="button" class="cancel">Annuler</button>
+                            </form>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         {% endfor %}
-        
     </div>
+    
     
 {% endblock %}

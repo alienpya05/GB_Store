@@ -23,7 +23,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('GB-Store/',include('frontend.urls'))
+    path('GB-Store/',include('frontend.urls')),
+    
 ]
 
 # Configuration pour servir les fichiers médias pendant le développement

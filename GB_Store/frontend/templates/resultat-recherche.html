@@ -1,0 +1,62 @@
+{% extends 'header-footer.html' %}
+
+{% block content %}
+    <div class="search-results">
+        <h3 style="font-size: 20px;text-align: center;">Résultats de la recherche pour "{{ search_query }}"</h3>
+
+        {% if results %}
+                {% for result in results %}
+                        <div class="articlePage">
+                            <div class="containers">
+                                <img src="{{ result.image.url }}" alt="{{ result.nomArticle }}" class="article-image">
+                            
+                                <h1>{{ result.nomArticle }}</h1>
+                                <p><strong>Prix:</strong> {{ result.prix }}</p>
+                                <p><strong>Stock:</strong> {{ result.stock }}</p>
+                                <p><strong>Disponibilité:</strong> {% if result.disponible %} Disponible {% else %} Non disponible {% endif %}</p>
+                            
+                                {% if result.promotion %}
+                                <p><strong>Promotion:</strong> {{ result.promotion.nomPromotion }}</p>
+                                {% endif %}
+                            
+                                <p><strong>Catégorie:</strong> {{ result.categorie.nomCategorie }}</p>
+                                
+                                <div class="btn-container">
+                                    <a href="{% url 'modifier_article' result.id %}" class="btn btn-primary">Modifier Article</a>
+                                    <a href="{% url 'confirmation_suppression' result.id  %}" class="btn btn-danger">Supprimer Article</a>
+
+                                    <!-- Ajout au panier -->
+                                    <div class="details">
+                                        <button class="add-to-cart" style="margin-bottom: 20px;">Ajouter au panier</button>
+                                        
+                                        <div class="quantity-selector" style="display: none; margin-bottom: 20px;">
+                                            <div class="quantity-controls">
+                                                <button class="quantity-decrease">-</button>
+                                                <input type="number" class="quantity" value="1" disabled>
+                                                <button class="quantity-increase">+</button>
+                                                <form class="ajouter-au-panier-form" method="POST" action="{% url 'ajouter_au_panier' %}">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="article_id" value="{{ result.id }}">
+                                                    <input type="hidden" name="quantity" class="quantity-input" value="1">
+                                                    <button type="submit" class="add-to-cart-final">Valider</button>
+                                                    <button type="button" class="cancel">Annuler</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                    <a href="{% url 'afficher_panier' %}" class="voir-panier">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Voir Panier
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                {% endfor %}
+            
+        {% else %}
+            <p>Aucun résultat trouvé.</p>
+        {% endif %}
+    </div>
+{% endblock %}

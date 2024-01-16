@@ -1,25 +1,24 @@
-
 {% extends 'header-footer.html' %}
 {% load static %}
 {% block content %}
 <div class="register-categorie">
     <div class="form-container">
         <div class="image-holder"><img src="{% static 'assets/categorie.jpg' %}" alt="image"></div>
-        <form method="post" action="{% url 'AddCategorie' %}" enctype="multipart/form-data" >
+        <form method="post" action="{% url 'modifier_categorie' categorie.id %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <h2 class="text-center"><strong>Create</strong> a category.</h2>
+            <h2 class="text-center"><strong>Modify</strong> a category.</h2>
             <div class="form-group">
-                <input class="form-control" type="text" name="nom" placeholder="Nom">
+                <input class="form-control" type="text" name="nom" placeholder="Nom" value="{{ categorie.nomCategorie }}">
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="description" placeholder="Description"></textarea>
+                <textarea class="form-control" name="description" placeholder="Description">{{ categorie.description }}</textarea>
             </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" name="image" id="customFile" onchange="updateFileName()">
                 <label class="custom-file-label" for="customFile">Choisir une image</label>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Create Category</button>
+                <button class="btn btn-primary btn-block" type="submit">Modify Category</button>
             </div>
         </form>
     </div>

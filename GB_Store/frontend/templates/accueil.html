@@ -11,7 +11,7 @@
     </div>
     
     <div class="search-container">
-        <form action="/search" method="GET">
+        <form action="{% url 'rechercher_Article' %}" method="GET">
             <input type="text" placeholder="Rechercher..." name="search" class="search-input">
             <button type="submit" class="search-button">Rechercher</button>
         </form>

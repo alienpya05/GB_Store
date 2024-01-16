@@ -1,0 +1,19 @@
+{% extends 'header-footer.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Confirmer la suppression de la Categorie</h2>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Êtes-vous sûr de vouloir supprimer cette Categorie "{{ categorie.nomCategorie }}" ?</p>
+        <form method="post" action="{% url 'supprimer_categorie' categorie.id %}">
+          {% csrf_token %}
+          <button class="btn btn-danger" type="submit">Oui, supprimer</button>
+          <a class="btn btn-primary" href="{% url 'Produits' %}">Annuler</a>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

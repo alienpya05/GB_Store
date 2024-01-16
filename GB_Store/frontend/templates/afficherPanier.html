@@ -1,0 +1,33 @@
+{% extends 'header-footer.html' %}
+
+{% block content %}
+    <div class="banner">
+        <div class="banner-text">
+            <h1>GB-STORE</h1>
+            <p>Sur cette page retrouvez les articles du panier et effectuez la vente</p>
+        </div>
+    </div>
+    {% if articles_du_panier %}
+        <div class="grid-container">
+                {% for article_panier in articles_du_panier %}
+                    <div class="grid-Article">
+                        <div class="image-container">
+                            <img src="{{ article_panier.article.image.url }}" alt="">
+                        </div>
+                        <div class="details">
+                            <div class="title">{{ article_panier.article.nomArticle }}</div>
+                            <div class="quantite">Quantité = × {{ article_panier.quantite }}</div>
+                            <div class="prix-total-quantite">Prix total = {{ article_panier.prix_total_article}}</div>
+                        </div>
+                    </div>
+                {% endfor %}    
+        </div>
+        <div class="vendre">
+            <div class="prix-total-panier" style="font-size: 28px; margin-bottom: 30px;">Prix total du panier = {{ prix_total_panier }}</div>
+            <a href="{% url 'formulaireVente' %}" class="vendre-button">Vendre</a>
+        </div> 
+    
+    {% else %}
+        <h1 style="text-align: center; margin-top: 50px;">Le panier est vide.</h2>
+    {% endif %} 
+{% endblock %}
